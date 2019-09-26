@@ -5,7 +5,7 @@ class Home_model extends CI_Model {
 
 	function jumlahcalon1()
 	{
-		$query = $this->db->get_where('quick_count', array('id_pilih' => 'PASLON 01'));
+		$query = $this->db->get_where('quick_count', array('id_pilih' => 'PASLON_01'));
 		if ($query->num_rows()>0) {
 			return $query->num_rows();
 		}else{
@@ -14,7 +14,7 @@ class Home_model extends CI_Model {
 	}
 	function jumlahcalon2()
 	{
-		$query = $this->db->get_where('quick_count', array('id_pilih' => 'PASLON 02'));
+		$query = $this->db->get_where('quick_count', array('id_pilih' => 'PASLON_02'));
 		if ($query->num_rows()>0) {
 			return $query->num_rows();
 		}else{
@@ -23,7 +23,16 @@ class Home_model extends CI_Model {
 	}	
 	function jumlahcalon3()
 	{
-		$query = $this->db->get_where('quick_count', array('id_pilih' => 'PASLON 03'));
+		$query = $this->db->get_where('quick_count', array('id_pilih' => 'PASLON_03'));
+		if ($query->num_rows()>0) {
+			return $query->num_rows();
+		}else{
+			return 0;
+		}
+	}
+	function jumlahpemilih()
+	{
+		$query = $this->db->get('akun');
 		if ($query->num_rows()>0) {
 			return $query->num_rows();
 		}else{

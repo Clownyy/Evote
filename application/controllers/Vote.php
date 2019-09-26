@@ -27,7 +27,7 @@ class Vote extends CI_Controller {
 		$this->vote_model->inputCount($data, 'quick_count');
 		$this->vote_model->update_statusvote();
 		$this->session->sess_destroy();
-		redirect(base_url('index.php/login'));
+		echo "<script>alert('Terima kasih sudah memilih, suara anda sangat berarti bagi sekolah ini');window.location.href='".base_url('index.php/login')."'</script>";
 	}
 
 }

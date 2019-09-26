@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>E - Vote</title>
+  <title>Admin Evote | Log in</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -30,22 +30,23 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href=""><b>Pem</b>ilos</a>
+    <a href="../../index2.html"><b>Admin</b>Evote</a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Silahkan Login untuk memilih</p>
+    <p class="login-box-msg">Sign in to manage E-Vote</p>
 
-    <form action="<?=base_url('index.php/login/auth')?>" method="post">
+    <form action="<?=base_url('index.php/login/authAdmin')?>" method="post">
       <div class="form-group has-feedback">
-        <input type="text" name="nis" class="form-control" placeholder="Unique Code">
+        <input type="text" class="form-control" placeholder="Username" name="username">
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="password" class="form-control" placeholder="Password" name="password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
-        <div class="col-xs-4">
-          <a href="<?=base_url()?>" class="btn btn-warning btn-block btn-flat">Live Count</a>
-        </div>
-        <div class="col-xs-4"></div>
+        <!-- /.col -->
         <div class="col-xs-4">
           <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
         </div>

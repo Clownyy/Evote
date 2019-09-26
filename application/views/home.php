@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>E - Vote | Dashboard</title>
+  <title>E - Vote</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -38,7 +38,7 @@
         <div class="col-md-4">
           <div class="box box-primary">
             <div class="box-body">
-              <center><h1><?=$totalcalon1?></h1></center>
+              <center><h1><?=number_format($totalcalon1/$totalpemilih*100,2)?>%</h1></center>
               <center>Total Suara</center>
             </div>
             <div class="box-footer">
@@ -49,7 +49,7 @@
         <div class="col-md-4">
           <div class="box box-success">
             <div class="box-body">
-              <center><h1><?=$totalcalon2?></h1></center>
+              <center><h1><?=number_format($totalcalon2/$totalpemilih*100,2)?>%</h1></center>
               <center>Total Suara</center>
             </div>
             <div class="box-footer">
@@ -60,7 +60,7 @@
         <div class="col-md-4">
           <div class="box box-danger">
             <div class="box-body">
-              <center><h1><?=$totalcalon3?></h1></center>
+              <center><h1><?=number_format($totalcalon3/$totalpemilih*100,2)?>%</h1></center>
               <center>Total Suara</center>
             </div>
             <div class="box-footer">
@@ -72,11 +72,16 @@
       <div class="col-md-12">
         <div class="box box-warning">
           <div class="box-body">
-            <center><h1><?=$totalsuara?></h1></center>
+            <center><h1><?=number_format($totalsuara/$totalpemilih*100,2)?>%</h1></center>
           </div>
           <div class="box-footer">
             <center><h1>Total Suara Masuk</h1></center>
           </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <a href="<?=base_url('index.php/login')?>" class="btn btn-success">Klik disini untuk menggunakan Hak Suara anda!</a>
         </div>
       </div>
     </div>

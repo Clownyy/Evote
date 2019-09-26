@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>E - Vote | Dashboard</title>
+  <title>Admin Evote | Dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -27,6 +27,7 @@
   <link rel="stylesheet" href="<?=base_url('assets')?>/bower_components/bootstrap-daterangepicker/daterangepicker.css">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="<?=base_url('assets')?>/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+  <script type="text/javascript" src="<?=base_url('assets')?>/dist/date_time.js"></script>
 
 <style>
   .custom{
@@ -45,14 +46,14 @@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
-  <?php foreach($get_session as $g) {?>
+  <?php foreach($session_admin as $g) {?>
   <header class="main-header">
     <!-- Logo -->
     <a href="index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>E</b>VT</span>
+      <span class="logo-mini"><b>A</b>VT</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>E</b>VOTE</span>
+      <span class="logo-lg"><b>Admin</b>EVT</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -63,21 +64,26 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- User Account: style can be found in dropdown.less -->
+          <li class="user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="asd">
+              <i class="hidden-xs" id="date_time"></i>
+            </a>
+          </li>
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <span class="hidden-xs"><?= $g->nama_lengkap ?> &emsp; <?=$g->kelas?> <?=$g->jurusan?></span>
+              <span class="hidden-xs"><?= $g->nama_lengkap ?></span>
             </a>
             <ul class="dropdown-menu">
               <li class="user-header">
                 <img src="<?=base_url('assets')?>/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                 <p>
                   <?=$g->nama_lengkap?>
-                  <small><?=$g->nis?></small>
+                  <small>Administrator</small>
                 </p>
               </li>
               <li class="user-footer">
                 <div class="pull-right">
-                  <a href="<?=base_url('index.php/logout')?>" class="btn btn-default btn-flat">Sign Out</a>
+                  <a href="<?=base_url('index.php/admin/logout')?>" class="btn btn-default btn-flat">Sign Out</a>
                 </div>
               </li>
             </ul>
@@ -97,7 +103,7 @@
         </div>
         <div class="pull-left info">
           <p><?= $g->nama_lengkap ?></p>
-          <a href="#"><?= $g->nis ?></a>
+          <i class="fa fa-user text-success"></i>&nbsp; Administrator
         </div>
       </div>
       <!-- search form -->
@@ -114,43 +120,125 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="active"><a href=""><i class="fa fa-user"></i> Pilih Ketua OSIS</a></li>
+        <li class="active"><a href="<?=base_url('index.php/admin')?>"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li class="header">Master Data</li>
+        <li><a href="<?=base_url('index.php/admin/calon')?>"><i class="fa fa-user"></i> Data Calon</a></li>
+        <li><a href=""><i class="fa fa-group"></i> Data Pemilih</a></li>
       </ul>
     </section>
     <!-- /.sidebar -->
   </aside>
 <?php } ?>
   <div class="content-wrapper">
-    <form action="<?=base_url('index.php/vote/addCount')?>" method="post">
-    <div class="container-fluid">
-      <div class="row custom">
-        <?php foreach($calon as $c){ ?>
-        <div class="col-md-4">
-          <div class="box box-primary">
-            <div class="box-header"><h3 class="text-center">Calon Ketua dan Wakil Ketua OSIS</h3></div>
-            <div class="box-body">
-              <center>
-                <img style="width: 50%; height: 50%;" src="<?=base_url('assets/image_calon/').$c->foto_calon?>">
-              </center>
+    <section class="content-header"></section>
+    <section class="content">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3><?=$totalcalon?></h3>
+              <p>Jumlah Calon</p>
             </div>
-            <div class="box-footer">
-              <center><b><h4><?=$c->nama_calon?> & <?=$c->nama_wakil?></h4></b></center>
-              <p><input type="radio" name="id_pilih" value="<?=$c->id_pilih?>">
-                <label>Pilih</label></p>
+            <div class="icon">
+              <i class="fa fa-user"></i>
+            </div>
+            <a href="" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3><?=$totalpemilih?></h3>
+              <p>Jumlah Pemilih</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-users"></i>
+            </div>
+            <a href="" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3><?=$totalsuaramasuk?></h3>
+              <p>Jumlah Suara Masuk</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-check"></i>
+            </div>
+            <a href="" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3><?=$totalpemilih-$totalsuaramasuk?></h3>
+              <p>Yang Belum Memilih</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-warning"></i>
+            </div>
+            <a href="" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-primary">
+        <div class="panel-heading"><center><h2>LIVE COUNT!</h2></center></div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="box box-primary">
+                <div class="box-body">
+                  <center><h1><?=number_format($totalcalon1/$totalpemilih*100,2)?>%</h1></center>
+                  <center>Total Suara</center>
+                </div>
+                <div class="box-footer">
+                  <center><h1>PASLON 01</h1></center>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="box box-success">
+                <div class="box-body">
+                  <center><h1><?=number_format($totalcalon2/$totalpemilih*100,2)?>%</h1></center>
+                  <center>Total Suara</center>
+                </div>
+                <div class="box-footer">
+                  <center><h1>PASLON 02</h1></center>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="box box-danger">
+                <div class="box-body">
+                  <center><h1><?=number_format($totalcalon3/$totalpemilih*100,2)?>%</h1></center>
+                  <center>Total Suara</center>
+                </div>
+                <div class="box-footer">
+                  <center><h1>PASLON 03</h1></center>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="box box-warning">
+              <div class="box-body">
+                <center><h1><?=$totalsuaramasuk/$totalpemilih*100?>%</h1></center>
+              </div>
+              <div class="box-footer">
+                <center><h1>Total Suara Masuk</h1></center>
+              </div>
             </div>
           </div>
         </div>
-      <?php } ?>
       </div>
-    </div>
-    <center><button style="font-size: 15pt" class="btn btn-success"><i class="fa fa-check"></i> Pilih Calon</button></center>
-    </form>
+    </section>
   </div>
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
       <b>Version</b> BETA
     </div>
-    <strong>Copyright &copy; <?=date('Y')?> <a href="https://smkn10jakarta.sch.id" target="_blank">Muhammad Bafaqih</a>.</strong>
+    <strong>Copyright &copy; <?=date('Y')?> <a href="https://www.facebook.com/bafaqih23" target="_blank">Muhammad Bafaqih</a>.</strong>
   </footer>
 <!-- jQuery 3 -->
 <script src="<?=base_url('assets')?>/bower_components/jquery/dist/jquery.min.js"></script>
@@ -189,5 +277,8 @@
 <script src="<?=base_url('assets')?>/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?=base_url('assets')?>/dist/js/demo.js"></script>
+<script type="text/javascript">
+  window.onload = date_time('date_time');
+</script>
 </body>
 </html>

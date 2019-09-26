@@ -6,7 +6,10 @@ class Login_model extends CI_Model {
 	public function cek_login($data){
 		$this->db->where($data);
 		return $this->db->get('akun');
-	}	
+	}
+	public function cek_admin($table,$where){
+		return $this->db->get_where($table,$where);
+	}
 
 }
 

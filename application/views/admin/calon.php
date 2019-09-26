@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>E - Vote | Dashboard</title>
+  <title>Admin Evote | Dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -27,10 +27,28 @@
   <link rel="stylesheet" href="<?=base_url('assets')?>/bower_components/bootstrap-daterangepicker/daterangepicker.css">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="<?=base_url('assets')?>/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+  <script type="text/javascript" src="<?=base_url('assets')?>/dist/date_time.js"></script>
 
 <style>
-  .custom{
+  .row{
     padding-top: 8px;
+  }
+  .btn-circle.btn-xl {
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    border-radius: 35px;
+    font-size: 24px;
+    line-height: 1.33;
+  }
+  .btn-circle {
+    width: 30px;
+    height: 30px;
+    padding: 6px 0px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.42857;
   }
 </style>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -45,14 +63,14 @@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
-  <?php foreach($get_session as $g) {?>
+  <?php foreach($session_admin as $g) {?>
   <header class="main-header">
     <!-- Logo -->
     <a href="index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>E</b>VT</span>
+      <span class="logo-mini"><b>A</b>VT</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>E</b>VOTE</span>
+      <span class="logo-lg"><b>Admin</b>EVT</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -63,21 +81,26 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- User Account: style can be found in dropdown.less -->
+          <li class="user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="asd">
+              <i class="hidden-xs" id="date_time"></i>
+            </a>
+          </li>
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <span class="hidden-xs"><?= $g->nama_lengkap ?> &emsp; <?=$g->kelas?> <?=$g->jurusan?></span>
+              <span class="hidden-xs"><?= $g->nama_lengkap ?></span>
             </a>
             <ul class="dropdown-menu">
               <li class="user-header">
                 <img src="<?=base_url('assets')?>/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                 <p>
                   <?=$g->nama_lengkap?>
-                  <small><?=$g->nis?></small>
+                  <small>Administrator</small>
                 </p>
               </li>
               <li class="user-footer">
                 <div class="pull-right">
-                  <a href="<?=base_url('index.php/logout')?>" class="btn btn-default btn-flat">Sign Out</a>
+                  <a href="<?=base_url('index.php/admin/logout')?>" class="btn btn-default btn-flat">Sign Out</a>
                 </div>
               </li>
             </ul>
@@ -97,7 +120,7 @@
         </div>
         <div class="pull-left info">
           <p><?= $g->nama_lengkap ?></p>
-          <a href="#"><?= $g->nis ?></a>
+          <i class="fa fa-user text-success"></i>&nbsp; Administrator
         </div>
       </div>
       <!-- search form -->
@@ -114,44 +137,115 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="active"><a href=""><i class="fa fa-user"></i> Pilih Ketua OSIS</a></li>
+        <li><a href="<?=base_url('index.php/admin')?>"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li class="header">Master Data</li>
+        <li class="active"><a href="<?=base_url('index.php/admin/calon')?>"><i class="fa fa-user"></i> Data Calon</a></li>
+        <li><a href=""><i class="fa fa-group"></i> Data Pemilih</a></li>
       </ul>
     </section>
     <!-- /.sidebar -->
   </aside>
 <?php } ?>
   <div class="content-wrapper">
-    <form action="<?=base_url('index.php/vote/addCount')?>" method="post">
-    <div class="container-fluid">
-      <div class="row custom">
-        <?php foreach($calon as $c){ ?>
-        <div class="col-md-4">
-          <div class="box box-primary">
-            <div class="box-header"><h3 class="text-center">Calon Ketua dan Wakil Ketua OSIS</h3></div>
-            <div class="box-body">
-              <center>
-                <img style="width: 50%; height: 50%;" src="<?=base_url('assets/image_calon/').$c->foto_calon?>">
-              </center>
-            </div>
-            <div class="box-footer">
-              <center><b><h4><?=$c->nama_calon?> & <?=$c->nama_wakil?></h4></b></center>
-              <p><input type="radio" name="id_pilih" value="<?=$c->id_pilih?>">
-                <label>Pilih</label></p>
-            </div>
-          </div>
+    <section class="content-header"></section>
+    <section class="content">
+      <div class="box box-primary">
+        <div class="box-header">
+          <?php if($totalcalon >= 3){ ?>
+          <button type="button" class="btn pull-right" disabled data-toggle="modal" data-target="#addCalon"><i class="fa fa-plus"></i> Tambah Calon</button>
+          <?php }else{ ?>
+          <button type="button" class="btn pull-right" data-toggle="modal" data-target="#addCalon"><i class="fa fa-plus"></i> Tambah Calon</button>
+          <?php } ?>
         </div>
-      <?php } ?>
+        <div class="box-body">
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>Nama Ketua</th>
+                <th>Nama Wakil</th>
+                <th>Visi Misi</th>
+                <th>Foto</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php $no = 1; foreach($datacalon as $c){ ?>
+              <tr>
+                <td><?=$no++;?></td>
+                <td><?=$c->nama_calon?></td>
+                <td><?=$c->nama_wakil?></td>
+                <td><?=$c->deskripsi_calon?></td>
+                <td><img class="img-circle pull-right" style="width: 50px" src="<?=base_url('assets/image_calon/').$c->foto_calon?>"></td>
+                <td style="text-align: right;">
+                  <button type="button" data-toggle="modal" data-target="#editCalon<?=$c->id_pilih?>" class="btn btn-warning btn-circle"><i class="fa fa-pencil"></i></button>
+                  <a href="<?=base_url('index.php/admin/hapusCalon/').$c->id_pilih?>" class="btn btn-danger btn-circle"><i class="fa fa-trash"></i></a>
+                </td>
+              </tr>
+            <?php } ?>
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
-    <center><button style="font-size: 15pt" class="btn btn-success"><i class="fa fa-check"></i> Pilih Calon</button></center>
-    </form>
+    </section>
   </div>
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
       <b>Version</b> BETA
     </div>
-    <strong>Copyright &copy; <?=date('Y')?> <a href="https://smkn10jakarta.sch.id" target="_blank">Muhammad Bafaqih</a>.</strong>
+    <strong>Copyright &copy; <?=date('Y')?> <a href="https://www.facebook.com/bafaqih23" target="_blank">Muhammad Bafaqih</a>.</strong>
   </footer>
+  <?php foreach($datacalon as $c) {?>
+  <div id="editCalon<?=$c->id_pilih?>" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button class="close" type="button" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit Calon</h4>
+        </div>
+        <form action="<?=base_url('index.php/admin/updateCalon')?>" method="post">
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-3">
+                <label class="control-label">Kode Pilih</label>
+              </div>
+              <div class="col-md-9">
+                <input type="text" class="form-control" name="id_pilih" readonly value="<?=$c->id_pilih?>">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <label class="control-label">Nama Ketua</label>
+              </div>
+              <div class="col-md-9">
+                <input type="text" class="form-control" name="ketua" value="<?=$c->nama_calon?>">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <label class="control-label">Nama Wakil</label>
+              </div>
+              <div class="col-md-9">
+                <input type="text" class="form-control" name="wakil" value="<?=$c->nama_wakil?>">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <label class="control-label">Visi Misi</label>
+              </div>
+              <div class="col-md-9">
+                <textarea class="form-control" name="deskripsi_calon"><?=$c->deskripsi_calon?></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary"><i class="fa fa-edit"></i> Update</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+<?php } ?>
 <!-- jQuery 3 -->
 <script src="<?=base_url('assets')?>/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -189,5 +283,8 @@
 <script src="<?=base_url('assets')?>/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?=base_url('assets')?>/dist/js/demo.js"></script>
+<script type="text/javascript">
+  window.onload = date_time('date_time');
+</script>
 </body>
 </html>

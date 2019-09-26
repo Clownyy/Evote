@@ -13,6 +13,7 @@ class Home extends CI_Controller {
 		$data['totalcalon1'] = $this->home_model->jumlahcalon1();
 		$data['totalcalon2'] = $this->home_model->jumlahcalon2();
 		$data['totalcalon3'] = $this->home_model->jumlahcalon3();
+		$data['totalpemilih'] = $this->home_model->jumlahpemilih();
 		$data['totalsuara'] = $this->home_model->jumlahseluruhcalon();
 		$this->load->view('home',$data);
 	}
