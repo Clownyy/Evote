@@ -109,7 +109,7 @@
       </div>
     </nav>
   </header>
-    <!-- Left side column. contains the logo and sidebar -->
+  <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
@@ -119,8 +119,8 @@
           <img src="<?=base_url('assets')?>/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p><?= $g->nama_lengkap ?></p>
-          <i class="fa fa-user text-success"></i>&nbsp; Administrator
+          <p><?=$g->nama_lengkap?></p>
+          <a href="#"><i class="fa fa-circle text-success"></i> SuperAdmin</a>
         </div>
       </div>
       <!-- search form -->
@@ -137,13 +137,27 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        <li><a href="<?=base_url('index.php/admin')?>"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li class="header">Master Data</li>
-        <li class="active"><a href="<?=base_url('index.php/admin/calon')?>"><i class="fa fa-user"></i> Data Calon</a></li>
-        <li><a href=""><i class="fa fa-group"></i> Data Pemilih</a></li>
-      </ul>
-    </section>
-    <!-- /.sidebar -->
+        <li class="">
+          <a href="<?=base_url('index.php/admin')?>">
+            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="header">MASTER DATA</li>
+        <li class="active">
+          <a href="<?=base_url('index.php/admin/calon')?>">
+            <i class="fa fa-user"></i> <span>Data Calon</span>
+          </a>
+        </li>
+        <li class="">
+          <a href="<?=base_url('index.php/admin/pemilih')?>">
+            <i class="fa fa-group"></i> <span>Data Pemilih</span>
+          </a>
+        </li>
+        <li class="">
+          <a href="<?=base_url('index.php/admin/count')?>">
+            <i class="fa fa-check"></i> <span>Data Penghitungan</span>
+          </a>
+        </li>
   </aside>
 <?php } ?>
   <div class="content-wrapper">

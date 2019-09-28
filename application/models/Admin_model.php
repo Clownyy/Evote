@@ -22,6 +22,14 @@ class Admin_model extends CI_Model {
 		$this->db->where($where);
 		$this->db->delete($table);
 	}
+	function input_data($data,$table){
+		$this->db->insert($table,$data);
+	}
+	function update_statusvote()
+	{
+      $this->db->set('status_vote',0);
+      return $this->db->update('akun');
+    }
 	function jumlahpemilih()
 	{
 		$query = $this->db->get('akun');
@@ -51,7 +59,7 @@ class Admin_model extends CI_Model {
 	}
 	function jumlahcalon1()
 	{
-		$query = $this->db->get_where('quick_count', array('id_pilih' => 'PASLON 01'));
+		$query = $this->db->get_where('quick_count', array('id_pilih' => 'PASLON_01'));
 		if ($query->num_rows()>0) {
 			return $query->num_rows();
 		}else{
@@ -60,7 +68,7 @@ class Admin_model extends CI_Model {
 	}
 	function jumlahcalon2()
 	{
-		$query = $this->db->get_where('quick_count', array('id_pilih' => 'PASLON 02'));
+		$query = $this->db->get_where('quick_count', array('id_pilih' => 'PASLON_02'));
 		if ($query->num_rows()>0) {
 			return $query->num_rows();
 		}else{
@@ -69,7 +77,7 @@ class Admin_model extends CI_Model {
 	}	
 	function jumlahcalon3()
 	{
-		$query = $this->db->get_where('quick_count', array('id_pilih' => 'PASLON 03'));
+		$query = $this->db->get_where('quick_count', array('id_pilih' => 'PASLON_03'));
 		if ($query->num_rows()>0) {
 			return $query->num_rows();
 		}else{
@@ -79,6 +87,14 @@ class Admin_model extends CI_Model {
 	function get_calon()
 	{
 		return $this->db->get('vote');
+	}
+	function get_count()
+	{
+		return $this->db->get('quick_count');
+	}
+	function get_pemilih()
+	{
+		return $this->db->get('akun');
 	}
 
 }

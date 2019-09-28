@@ -19,6 +19,8 @@
   <link rel="stylesheet" href="<?=base_url('assets')?>/dist/css/skins/_all-skins.min.css">
   <!-- Morris chart -->
   <link rel="stylesheet" href="<?=base_url('assets')?>/bower_components/morris.js/morris.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="<?=base_url('assets')?>/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <!-- jvectormap -->
   <link rel="stylesheet" href="<?=base_url('assets')?>/bower_components/jvectormap/jquery-jvectormap.css">
   <!-- Date Picker -->
@@ -30,8 +32,25 @@
   <script type="text/javascript" src="<?=base_url('assets')?>/dist/date_time.js"></script>
 
 <style>
-  .custom{
+  .row{
     padding-top: 8px;
+  }
+  .btn-circle.btn-xl {
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    border-radius: 35px;
+    font-size: 24px;
+    line-height: 1.33;
+  }
+  .btn-circle {
+    width: 30px;
+    height: 30px;
+    padding: 6px 0px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.42857;
   }
 </style>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -120,7 +139,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="active">
+        <li class="">
           <a href="<?=base_url('index.php/admin')?>">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
@@ -131,7 +150,7 @@
             <i class="fa fa-user"></i> <span>Data Calon</span>
           </a>
         </li>
-        <li class="">
+        <li class="active">
           <a href="<?=base_url('index.php/admin/pemilih')?>">
             <i class="fa fa-group"></i> <span>Data Pemilih</span>
           </a>
@@ -146,107 +165,44 @@
   <div class="content-wrapper">
     <section class="content-header"></section>
     <section class="content">
-      <div class="row">
-        <div class="col-md-3">
-          <div class="small-box bg-aqua">
-            <div class="inner">
-              <h3><?=$totalcalon?></h3>
-              <p>Jumlah Calon</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-user"></i>
-            </div>
-            <a href="" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
+      <div class="box box-primary">
+        <div class="box-header">
+          <button type="button" class="btn pull-right" data-toggle="modal" data-target="#addPemilih"><i class="fa fa-plus"></i> Tambah Calon</button>
         </div>
-        <div class="col-md-3">
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3><?=$totalpemilih?></h3>
-              <p>Jumlah Pemilih</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-users"></i>
-            </div>
-            <a href="" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3><?=$totalsuaramasuk?></h3>
-              <p>Jumlah Suara Masuk</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-check"></i>
-            </div>
-            <a href="" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="small-box bg-red">
-            <div class="inner">
-              <h3><?=$totalpemilih-$totalsuaramasuk?></h3>
-              <p>Yang Belum Memilih</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-warning"></i>
-            </div>
-            <a href="" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-      </div>
-      <div class="panel panel-primary">
-        <div class="panel-heading"><center><h2>LIVE COUNT!</h2></center></div>
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-md-4">
-              <div class="box box-primary">
-                <div class="box-body">
-                  <input type="hidden" name="PASLON_01" value="<?=$totalcalon1?>">
-                  <center><h1 id="totalcalon1ID"></h1></center>
-                  <center>Total Suara</center>
-                </div>
-                <div class="box-footer">
-                  <center><h2><?=$infocalon1->nama_calon?><br> &<br> <?=$infocalon1->nama_wakil?></h2></center>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="box box-success">
-                <div class="box-body">
-                  <input type="hidden" name="PASLON_02" value="<?=$totalcalon2?>">
-                  <center><h1 id="totalcalon2ID"></h1></center>
-                  <center>Total Suara</center>
-                </div>
-                <div class="box-footer">
-                  <center><h2><?=$infocalon2->nama_calon?><br> &<br> <?=$infocalon2->nama_wakil?></h2></center>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="box box-danger">
-                <div class="box-body">
-                  <input type="hidden" name="PASLON_03" value="<?=$totalcalon3?>">
-                  <center><h1 id="totalcalon3ID"></h1></center>
-                  <center>Total Suara</center>
-                </div>
-                <div class="box-footer">
-                  <center><h2><?=$infocalon3->nama_calon?><br> &<br> <?=$infocalon3->nama_wakil?></h2></center>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-12">
-            <div class="box box-warning">
-              <div class="box-body">
-                <center><h1 id="totalsuaraID"></h1></center>
-              </div>
-              <div class="box-footer">
-                <center><h1>Total Suara Masuk</h1></center>
-              </div>
-            </div>
-          </div>
+        <div class="box-body">
+          <table class="table table-striped table-bordered" id="tablePemilih">
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>NIS</th>
+                <th>Nama Lengkap</th>
+                <th>Kelas</th>
+                <th>Status</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php $no = 1; foreach($pemilih as $c){ ?>
+              <tr>
+                <td><?=$no++;?></td>
+                <td><?=$c->nis?></td>
+                <td><?=$c->nama_lengkap?></td>
+                <td><?=$c->kelas?> <?=$c->jurusan?></td>
+                <td><?php if($c->status_vote == 0) { ?> <span class="label label-danger">Belum Memilih</span> <?php }else{ ?> <span class="label label-success">Sudah Memilih</span> <?php } ?></td>
+                <td style="text-align: right;">
+                  <?php if($c->status_vote == 0){ ?>
+                  <button type="button" data-toggle="modal" data-target="#editPemilih<?=$c->nis?>" class="btn btn-warning btn-circle"><i class="fa fa-pencil"></i></button>
+                  <a href="<?=base_url('index.php/admin/hapusPemilih/').$c->nis?>" class="btn btn-danger btn-circle"><i class="fa fa-trash"></i></a>
+                  <?php }else{ ?>
+                  <button disabled class="btn btn-warning btn-circle"><i class="fa fa-pencil"></i></button>
+                  <button disabled class="btn btn-danger btn-circle"><i class="fa fa-trash"></i></button>
+                  <?php } ?>
+                </td>
+              </tr>
+            <?php } ?>
+            </tbody>
+          </table>
+          <p>Note : Data pemilih yang sudah memilih tidak bisa diubah</p>
         </div>
       </div>
     </section>
@@ -257,32 +213,116 @@
     </div>
     <strong>Copyright &copy; <?=date('Y')?> <a href="https://www.facebook.com/bafaqih23" target="_blank">Muhammad Bafaqih</a>.</strong>
   </footer>
+  <?php foreach($pemilih as $c) {?>
+  <div id="editPemilih<?=$c->nis?>" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button class="close" type="button" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit Calon</h4>
+        </div>
+        <form action="<?=base_url('index.php/admin/updatePemilih')?>" method="post">
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-3">
+                <label class="control-label">NIS</label>
+              </div>
+              <div class="col-md-9">
+                <input type="text" class="form-control" readonly name="nis" value="<?=$c->nis?>">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <label class="control-label">Nama Lengkap</label>
+              </div>
+              <div class="col-md-9">
+                <input type="text" class="form-control" name="nama_lengkap" value="<?=$c->nama_lengkap?>">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <label class="control-label">Kelas</label>
+              </div>
+              <div class="col-md-9">
+                <input type="text" class="form-control" name="kelas" value="<?=$c->kelas?>">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <label class="control-label">Jurusan</label>
+              </div>
+              <div class="col-md-9">
+                <input type="text" class="form-control" name="jurusan" value="<?=$c->jurusan?>">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <label class="control-label">Status</label>
+              </div>
+              <div class="col-md-9">
+                <label><?php if($c->status_vote == 0) { ?> <span class="label label-danger">Belum Memilih</span> <?php }else{ ?> <span class="label label-success">Sudah Memilih</span> <?php } ?></label>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary"><i class="fa fa-edit"></i> Update</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+<?php } ?>
+<div id="addPemilih" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" type="button" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Tambah Pemilih</h4>
+      </div>
+      <form action="<?=base_url('index.php/admin/addPemilih')?>" method="post">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-3">
+              <label class="control-label">NIS</label>
+            </div>
+            <div class="col-md-9">
+              <input type="text" class="form-control" name="nis">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <label class="control-label">Nama Lengkap</label>
+            </div>
+            <div class="col-md-9">
+              <input type="text" class="form-control" name="nama_lengkap">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <label class="control-label">Kelas</label>
+            </div>
+            <div class="col-md-9">
+              <input type="text" class="form-control" name="kelas">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <label class="control-label">Jurusan</label>
+            </div>
+            <div class="col-md-9">
+              <input type="text" class="form-control" name="jurusan">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary"><i class="fa fa-plus"></i> Tambah</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 <!-- jQuery 3 -->
 <script src="<?=base_url('assets')?>/bower_components/jquery/dist/jquery.min.js"></script>
-<script>
-    function loadcount(){
-      $.ajax({
-        url: "<?php echo base_url()?>index.php/home/loadcount",
-        method: "GET",
-        dataType: "JSON",
-        success: function(data){
-          let calon1 = (data.totalcalon1*100/data.totalpemilih).toFixed(2)+ "%"
-          let calon2 = (data.totalcalon2*100/data.totalpemilih).toFixed(2)+ "%"
-          let calon3 = (data.totalcalon3*100/data.totalpemilih).toFixed(2)+ "%"
-          let suara = (data.totalsuara*100/data.totalpemilih).toFixed(2)+ "%"
-          $('#totalcalon1ID').html(calon1)
-          $('#totalcalon2ID').html(calon2)
-          $('#totalcalon3ID').html(calon3)
-          $('#totalsuaraID').html(suara)
-        }
-      })
-    }
-
-    loadcount()
-    setInterval(function(){
-      loadcount()
-    }, 1000)
-</script>
 <!-- jQuery UI 1.11.4 -->
 <script src="<?=base_url('assets')?>/bower_components/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -316,10 +356,18 @@
 <script src="<?=base_url('assets')?>/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="<?=base_url('assets')?>/dist/js/pages/dashboard.js"></script>
+<!-- DataTables -->
+<script src="<?=base_url('assets')?>/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="<?=base_url('assets')?>/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?=base_url('assets')?>/dist/js/demo.js"></script>
 <script type="text/javascript">
   window.onload = date_time('date_time');
+</script>
+<script>
+  $(function () {
+    $('#tablePemilih').DataTable()
+  })
 </script>
 </body>
 </html>

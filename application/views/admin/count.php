@@ -30,8 +30,25 @@
   <script type="text/javascript" src="<?=base_url('assets')?>/dist/date_time.js"></script>
 
 <style>
-  .custom{
+  .row{
     padding-top: 8px;
+  }
+  .btn-circle.btn-xl {
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    border-radius: 35px;
+    font-size: 24px;
+    line-height: 1.33;
+  }
+  .btn-circle {
+    width: 30px;
+    height: 30px;
+    padding: 6px 0px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.42857;
   }
 </style>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -120,7 +137,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="active">
+        <li class="">
           <a href="<?=base_url('index.php/admin')?>">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
@@ -136,7 +153,7 @@
             <i class="fa fa-group"></i> <span>Data Pemilih</span>
           </a>
         </li>
-        <li class="">
+        <li class="active">
           <a href="<?=base_url('index.php/admin/count')?>">
             <i class="fa fa-check"></i> <span>Data Penghitungan</span>
           </a>
@@ -146,107 +163,25 @@
   <div class="content-wrapper">
     <section class="content-header"></section>
     <section class="content">
-      <div class="row">
-        <div class="col-md-3">
-          <div class="small-box bg-aqua">
-            <div class="inner">
-              <h3><?=$totalcalon?></h3>
-              <p>Jumlah Calon</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-user"></i>
-            </div>
-            <a href="" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
+      <div class="box box-primary">
+        <div class="box-header">
+          <a href="<?=base_url('index.php/admin/deleteAllCount')?>" class="btn btn-danger pull-right"><i class="fa fa-trash"></i> Delete All</a>
         </div>
-        <div class="col-md-3">
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3><?=$totalpemilih?></h3>
-              <p>Jumlah Pemilih</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-users"></i>
-            </div>
-            <a href="" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3><?=$totalsuaramasuk?></h3>
-              <p>Jumlah Suara Masuk</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-check"></i>
-            </div>
-            <a href="" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="small-box bg-red">
-            <div class="inner">
-              <h3><?=$totalpemilih-$totalsuaramasuk?></h3>
-              <p>Yang Belum Memilih</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-warning"></i>
-            </div>
-            <a href="" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-      </div>
-      <div class="panel panel-primary">
-        <div class="panel-heading"><center><h2>LIVE COUNT!</h2></center></div>
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-md-4">
-              <div class="box box-primary">
-                <div class="box-body">
-                  <input type="hidden" name="PASLON_01" value="<?=$totalcalon1?>">
-                  <center><h1 id="totalcalon1ID"></h1></center>
-                  <center>Total Suara</center>
-                </div>
-                <div class="box-footer">
-                  <center><h2><?=$infocalon1->nama_calon?><br> &<br> <?=$infocalon1->nama_wakil?></h2></center>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="box box-success">
-                <div class="box-body">
-                  <input type="hidden" name="PASLON_02" value="<?=$totalcalon2?>">
-                  <center><h1 id="totalcalon2ID"></h1></center>
-                  <center>Total Suara</center>
-                </div>
-                <div class="box-footer">
-                  <center><h2><?=$infocalon2->nama_calon?><br> &<br> <?=$infocalon2->nama_wakil?></h2></center>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="box box-danger">
-                <div class="box-body">
-                  <input type="hidden" name="PASLON_03" value="<?=$totalcalon3?>">
-                  <center><h1 id="totalcalon3ID"></h1></center>
-                  <center>Total Suara</center>
-                </div>
-                <div class="box-footer">
-                  <center><h2><?=$infocalon3->nama_calon?><br> &<br> <?=$infocalon3->nama_wakil?></h2></center>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-12">
-            <div class="box box-warning">
-              <div class="box-body">
-                <center><h1 id="totalsuaraID"></h1></center>
-              </div>
-              <div class="box-footer">
-                <center><h1>Total Suara Masuk</h1></center>
-              </div>
-            </div>
-          </div>
+        <div class="box-body">
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>ID Pilih</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach($count as $c){ ?>
+              <tr>
+                <td><?=$c->id_pilih?></td>
+              </tr>
+            <?php } ?>
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
@@ -259,30 +194,6 @@
   </footer>
 <!-- jQuery 3 -->
 <script src="<?=base_url('assets')?>/bower_components/jquery/dist/jquery.min.js"></script>
-<script>
-    function loadcount(){
-      $.ajax({
-        url: "<?php echo base_url()?>index.php/home/loadcount",
-        method: "GET",
-        dataType: "JSON",
-        success: function(data){
-          let calon1 = (data.totalcalon1*100/data.totalpemilih).toFixed(2)+ "%"
-          let calon2 = (data.totalcalon2*100/data.totalpemilih).toFixed(2)+ "%"
-          let calon3 = (data.totalcalon3*100/data.totalpemilih).toFixed(2)+ "%"
-          let suara = (data.totalsuara*100/data.totalpemilih).toFixed(2)+ "%"
-          $('#totalcalon1ID').html(calon1)
-          $('#totalcalon2ID').html(calon2)
-          $('#totalcalon3ID').html(calon3)
-          $('#totalsuaraID').html(suara)
-        }
-      })
-    }
-
-    loadcount()
-    setInterval(function(){
-      loadcount()
-    }, 1000)
-</script>
 <!-- jQuery UI 1.11.4 -->
 <script src="<?=base_url('assets')?>/bower_components/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->

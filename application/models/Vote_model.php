@@ -26,6 +26,33 @@ class Vote_model extends CI_Model {
     {
     	$this->db->insert($table,$data);
     }
+    function jumlahcalon1()
+	{
+		$query = $this->db->get_where('quick_count', array('id_pilih' => 'PASLON_01'));
+		if ($query->num_rows()>0) {
+			return $query->num_rows();
+		}else{
+			return 0;
+		}
+	}
+	function jumlahcalon2()
+	{
+		$query = $this->db->get_where('quick_count', array('id_pilih' => 'PASLON_02'));
+		if ($query->num_rows()>0) {
+			return $query->num_rows();
+		}else{
+			return 0;
+		}
+	}	
+	function jumlahcalon3()
+	{
+		$query = $this->db->get_where('quick_count', array('id_pilih' => 'PASLON_03'));
+		if ($query->num_rows()>0) {
+			return $query->num_rows();
+		}else{
+			return 0;
+		}
+	}
 
 }
 

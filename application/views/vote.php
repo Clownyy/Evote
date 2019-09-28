@@ -77,7 +77,7 @@
               </li>
               <li class="user-footer">
                 <div class="pull-right">
-                  <a href="<?=base_url('index.php/logout')?>" class="btn btn-default btn-flat">Sign Out</a>
+                  <a href="<?=base_url('index.php/vote/logout')?>" class="btn btn-default btn-flat">Sign Out</a>
                 </div>
               </li>
             </ul>
@@ -135,8 +135,11 @@
             </div>
             <div class="box-footer">
               <center><b><h4><?=$c->nama_calon?> & <?=$c->nama_wakil?></h4></b></center>
-              <p><input type="radio" name="id_pilih" value="<?=$c->id_pilih?>">
-                <label>Pilih</label></p>
+              <div class="row">
+                <center>
+                  <input type="radio" style="height: 30px; width: 30px;" name="id_pilih" value="<?=$c->id_pilih?>">
+                </center>
+              </div>
             </div>
           </div>
         </div>

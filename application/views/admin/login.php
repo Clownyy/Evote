@@ -48,6 +48,10 @@
       <div class="row">
         <!-- /.col -->
         <div class="col-xs-4">
+          <a href="<?=base_url()?>" class="btn btn-warning btn-block btn-flat">Live Count</a>
+        </div>
+        <div class="col-xs-4"></div>
+        <div class="col-xs-4">
           <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
         </div>
         <!-- /.col -->
