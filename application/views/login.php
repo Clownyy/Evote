@@ -36,7 +36,7 @@
   <div class="login-box-body">
     <p class="login-box-msg">Silahkan Login untuk memilih</p>
 
-    <form action="<?=base_url('index.php/login/auth')?>" method="post">
+    <form action="<?=base_url('login/auth')?>" method="post">
       <div class="form-group has-feedback">
         <input type="text" name="nis" class="form-control" placeholder="Unique Code">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>

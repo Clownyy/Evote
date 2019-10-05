@@ -10,14 +10,14 @@ class Login extends CI_Controller {
 	public function index()
 	{
 		if ($this->session->userdata('status_login')) {
-			redirect(base_url('index.php/vote'));
+			redirect(base_url('vote'));
 		}
 		$this->load->view('login');
 	}
 	public function admin()
 	{
 		if ($this->session->userdata('admin_login')) {
-			redirect(base_url('index.php/admin'));
+			redirect(base_url('admin'));
 		}
 		$this->load->view('admin/login');
 	}
@@ -36,9 +36,9 @@ class Login extends CI_Controller {
 				'admin_login' => TRUE,
 			);
 			$this->session->set_userdata($create_session);
-			redirect(base_url('index.php/admin'));
+			redirect(base_url('admin'));
 		}else{
-			echo "<script>alert('Anda bukan admin!');window.location.href='".base_url('index.php/login/admin')."'</script>";
+			echo "<script>alert('Anda bukan admin!');window.location.href='".base_url('login/admin')."'</script>";
 		}
 	}
 	public function auth()
@@ -59,15 +59,15 @@ class Login extends CI_Controller {
 						'status_login' => TRUE
 					);
 					$this->session->set_userdata($create_session);
-					redirect(base_url('index.php/vote'));
+					redirect(base_url('vote'));
 				}else{
 					echo "<script>alert('Anda Sudah Memilih, Silahkan Pantau Live Count!');window.location.href='".base_url()."'</script>";
 				}
 			}else{
-				echo "<script>alert('NIS tidak terdaftar');window.location.href='".base_url('index.php/login')."'</script>";
+				echo "<script>alert('NIS tidak terdaftar');window.location.href='".base_url('login')."'</script>";
 			}
 		}else{
-			echo "<script>alert('Isi semua inputan');window.location.href='".base_url('index.php/login')."'</script>";
+			echo "<script>alert('Isi semua inputan');window.location.href='".base_url('login')."'</script>";
 		}
 	}
 

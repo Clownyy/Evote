@@ -8,7 +8,7 @@ class Admin extends CI_Controller {
 		parent::__construct();
 		$this->load->model('admin_model');
 		if (!$this->session->userdata('admin_login')) {
-			redirect(base_url('index.php/login/admin'));
+			redirect(base_url('login/admin'));
 		}
 	}
 	public function updatePemilih()
@@ -27,17 +27,17 @@ class Admin extends CI_Controller {
 			'nis' => $nis,
 		);
 		$this->admin_model->edit_data($where,$data,'akun');
-		redirect(base_url('index.php/admin/pemilih'));
+		redirect(base_url('admin/pemilih'));
 	}
 	public function hapusPemilih($nis){
 		$where = array('nis' => $nis);
 		$this->admin_model->hapus_data($where,'akun');
-		redirect(base_url('index.php/admin/pemilih'));
+		redirect(base_url('admin/pemilih'));
 	}
 	public function hapusCalon($id_pilih){
 		$where = array('id_pilih' => $id_pilih);
 		$this->admin_model->hapus_data($where,'vote');
-		redirect(base_url('index.php/admin/calon'));
+		redirect(base_url('admin/calon'));
 	}
 	public function pemilih()
 	{
@@ -67,13 +67,13 @@ class Admin extends CI_Controller {
 			'id_pilih' => $id_pilih,
 		);
 		$this->admin_model->edit_data($where,$data,'vote');
-		redirect(base_url('index.php/admin/calon'));
+		redirect(base_url('admin/calon'));
 	}
 	public function deleteAllCount()
 	{
 		$this->db->empty_table('quick_count');
 		$this->admin_model->update_statusvote();
-		redirect(base_url('index.php/admin/count'));
+		redirect(base_url('admin/count'));
 	}
 	public function index()
 	{
@@ -92,7 +92,7 @@ class Admin extends CI_Controller {
 	public function logout()
 	{
 		$this->session->sess_destroy();
-		redirect(base_url('index.php/login/admin'));
+		redirect(base_url('login/admin'));
 	}
 	public function calon()
 	{

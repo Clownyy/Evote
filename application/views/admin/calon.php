@@ -100,7 +100,7 @@
               </li>
               <li class="user-footer">
                 <div class="pull-right">
-                  <a href="<?=base_url('index.php/admin/logout')?>" class="btn btn-default btn-flat">Sign Out</a>
+                  <a href="<?=base_url('admin/logout')?>" class="btn btn-default btn-flat">Sign Out</a>
                 </div>
               </li>
             </ul>
@@ -138,23 +138,23 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li class="">
-          <a href="<?=base_url('index.php/admin')?>">
+          <a href="<?=base_url('admin')?>">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
         <li class="header">MASTER DATA</li>
         <li class="active">
-          <a href="<?=base_url('index.php/admin/calon')?>">
+          <a href="<?=base_url('admin/calon')?>">
             <i class="fa fa-user"></i> <span>Data Calon</span>
           </a>
         </li>
         <li class="">
-          <a href="<?=base_url('index.php/admin/pemilih')?>">
+          <a href="<?=base_url('admin/pemilih')?>">
             <i class="fa fa-group"></i> <span>Data Pemilih</span>
           </a>
         </li>
         <li class="">
-          <a href="<?=base_url('index.php/admin/count')?>">
+          <a href="<?=base_url('admin/count')?>">
             <i class="fa fa-check"></i> <span>Data Penghitungan</span>
           </a>
         </li>
@@ -193,7 +193,7 @@
                 <td><img class="img-circle pull-right" style="width: 50px" src="<?=base_url('assets/image_calon/').$c->foto_calon?>"></td>
                 <td style="text-align: right;">
                   <button type="button" data-toggle="modal" data-target="#editCalon<?=$c->id_pilih?>" class="btn btn-warning btn-circle"><i class="fa fa-pencil"></i></button>
-                  <a href="<?=base_url('index.php/admin/hapusCalon/').$c->id_pilih?>" class="btn btn-danger btn-circle"><i class="fa fa-trash"></i></a>
+                  <a href="<?=base_url('admin/hapusCalon/').$c->id_pilih?>" class="btn btn-danger btn-circle"><i class="fa fa-trash"></i></a>
                 </td>
               </tr>
             <?php } ?>
@@ -217,7 +217,7 @@
           <button class="close" type="button" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Edit Calon</h4>
         </div>
-        <form action="<?=base_url('index.php/admin/updateCalon')?>" method="post">
+        <form action="<?=base_url('admin/updateCalon')?>" method="post">
           <div class="modal-body">
             <div class="row">
               <div class="col-md-3">

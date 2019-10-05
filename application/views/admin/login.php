@@ -36,7 +36,7 @@
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to manage E-Vote</p>
 
-    <form action="<?=base_url('index.php/login/authAdmin')?>" method="post">
+    <form action="<?=base_url('login/authAdmin')?>" method="post">
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="Username" name="username">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>

@@ -77,7 +77,7 @@
               </li>
               <li class="user-footer">
                 <div class="pull-right">
-                  <a href="<?=base_url('index.php/vote/logout')?>" class="btn btn-default btn-flat">Sign Out</a>
+                  <a href="<?=base_url('vote/logout')?>" class="btn btn-default btn-flat">Sign Out</a>
                 </div>
               </li>
             </ul>
@@ -121,7 +121,7 @@
   </aside>
 <?php } ?>
   <div class="content-wrapper">
-    <form action="<?=base_url('index.php/vote/addCount')?>" method="post">
+    <form action="<?=base_url('vote/addCount')?>" method="post">
     <div class="container-fluid">
       <div class="row custom">
         <?php foreach($calon as $c){ ?>

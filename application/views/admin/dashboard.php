@@ -83,7 +83,7 @@
               </li>
               <li class="user-footer">
                 <div class="pull-right">
-                  <a href="<?=base_url('index.php/admin/logout')?>" class="btn btn-default btn-flat">Sign Out</a>
+                  <a href="<?=base_url('admin/logout')?>" class="btn btn-default btn-flat">Sign Out</a>
                 </div>
               </li>
             </ul>
@@ -121,23 +121,23 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li class="active">
-          <a href="<?=base_url('index.php/admin')?>">
+          <a href="<?=base_url('admin')?>">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
         <li class="header">MASTER DATA</li>
         <li class="">
-          <a href="<?=base_url('index.php/admin/calon')?>">
+          <a href="<?=base_url('admin/calon')?>">
             <i class="fa fa-user"></i> <span>Data Calon</span>
           </a>
         </li>
         <li class="">
-          <a href="<?=base_url('index.php/admin/pemilih')?>">
+          <a href="<?=base_url('admin/pemilih')?>">
             <i class="fa fa-group"></i> <span>Data Pemilih</span>
           </a>
         </li>
         <li class="">
-          <a href="<?=base_url('index.php/admin/count')?>">
+          <a href="<?=base_url('admin/count')?>">
             <i class="fa fa-check"></i> <span>Data Penghitungan</span>
           </a>
         </li>
@@ -262,7 +262,7 @@
 <script>
     function loadcount(){
       $.ajax({
-        url: "<?php echo base_url()?>index.php/home/loadcount",
+        url: "<?php echo base_url()?>home/loadcount",
         method: "GET",
         dataType: "JSON",
         success: function(data){

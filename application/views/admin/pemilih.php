@@ -102,7 +102,7 @@
               </li>
               <li class="user-footer">
                 <div class="pull-right">
-                  <a href="<?=base_url('index.php/admin/logout')?>" class="btn btn-default btn-flat">Sign Out</a>
+                  <a href="<?=base_url('admin/logout')?>" class="btn btn-default btn-flat">Sign Out</a>
                 </div>
               </li>
             </ul>
@@ -140,23 +140,23 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li class="">
-          <a href="<?=base_url('index.php/admin')?>">
+          <a href="<?=base_url('admin')?>">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
         <li class="header">MASTER DATA</li>
         <li class="">
-          <a href="<?=base_url('index.php/admin/calon')?>">
+          <a href="<?=base_url('admin/calon')?>">
             <i class="fa fa-user"></i> <span>Data Calon</span>
           </a>
         </li>
         <li class="active">
-          <a href="<?=base_url('index.php/admin/pemilih')?>">
+          <a href="<?=base_url('admin/pemilih')?>">
             <i class="fa fa-group"></i> <span>Data Pemilih</span>
           </a>
         </li>
         <li class="">
-          <a href="<?=base_url('index.php/admin/count')?>">
+          <a href="<?=base_url('admin/count')?>">
             <i class="fa fa-check"></i> <span>Data Penghitungan</span>
           </a>
         </li>
@@ -192,7 +192,7 @@
                 <td style="text-align: right;">
                   <?php if($c->status_vote == 0){ ?>
                   <button type="button" data-toggle="modal" data-target="#editPemilih<?=$c->nis?>" class="btn btn-warning btn-circle"><i class="fa fa-pencil"></i></button>
-                  <a href="<?=base_url('index.php/admin/hapusPemilih/').$c->nis?>" class="btn btn-danger btn-circle"><i class="fa fa-trash"></i></a>
+                  <a href="<?=base_url('admin/hapusPemilih/').$c->nis?>" class="btn btn-danger btn-circle"><i class="fa fa-trash"></i></a>
                   <?php }else{ ?>
                   <button disabled class="btn btn-warning btn-circle"><i class="fa fa-pencil"></i></button>
                   <button disabled class="btn btn-danger btn-circle"><i class="fa fa-trash"></i></button>
@@ -221,7 +221,7 @@
           <button class="close" type="button" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Edit Calon</h4>
         </div>
-        <form action="<?=base_url('index.php/admin/updatePemilih')?>" method="post">
+        <form action="<?=base_url('admin/updatePemilih')?>" method="post">
           <div class="modal-body">
             <div class="row">
               <div class="col-md-3">
@@ -279,7 +279,7 @@
         <button class="close" type="button" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Tambah Pemilih</h4>
       </div>
-      <form action="<?=base_url('index.php/admin/addPemilih')?>" method="post">
+      <form action="<?=base_url('admin/addPemilih')?>" method="post">
         <div class="modal-body">
           <div class="row">
             <div class="col-md-3">
@@ -287,6 +287,7 @@
             </div>
             <div class="col-md-9">
               <input type="text" class="form-control" name="nis">
+              <p style="color: red">*Masukkan NIS dengan benar, setelah ter input, tidak bisa diubah</p>
             </div>
           </div>
           <div class="row">

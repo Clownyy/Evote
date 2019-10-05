@@ -9,7 +9,7 @@ class Vote extends CI_Controller {
 		parent::__construct();
 		$this->load->model('vote_model');
 		if (!$this->session->userdata('status_login')) {
-			redirect(base_url('index.php/login'));
+			redirect(base_url('login'));
 		}
 	}
 	public function index()
@@ -25,7 +25,7 @@ class Vote extends CI_Controller {
 	public function logout()
 	{
 		$this->session->sess_destroy();
-		redirect(base_url('index.php/login'));
+		redirect(base_url('login'));
 	}
 	public function addCount()
 	{
@@ -50,7 +50,7 @@ class Vote extends CI_Controller {
 
 		$this->vote_model->update_statusvote();
 		$this->session->sess_destroy();
-		echo "<script>alert('Terima kasih sudah memilih, suara anda sangat berarti bagi sekolah ini');window.location.href='".base_url('index.php/login')."'</script>";
+		echo "<script>alert('Terima kasih sudah memilih, suara anda sangat berarti bagi sekolah ini');window.location.href='".base_url('login')."'</script>";
 	}
 
 }

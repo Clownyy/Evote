@@ -84,7 +84,7 @@
       </div>
       <div class="row">
         <div class="col-md-4">
-          <a href="<?=base_url('index.php/login')?>" class="btn btn-success">Klik disini untuk menggunakan Hak Suara anda!</a>
+          <a href="<?=base_url('login')?>" class="btn btn-success">Klik disini untuk menggunakan Hak Suara anda!</a>
         </div>
       </div>
     </div>
@@ -94,7 +94,7 @@
 <script>
     function loadcount(){
       $.ajax({
-        url: "<?php echo base_url()?>index.php/home/loadcount",
+        url: "<?php echo base_url()?>home/loadcount",
         method: "GET",
         dataType: "JSON",
         success: function(data){

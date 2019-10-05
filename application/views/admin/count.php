@@ -100,7 +100,7 @@
               </li>
               <li class="user-footer">
                 <div class="pull-right">
-                  <a href="<?=base_url('index.php/admin/logout')?>" class="btn btn-default btn-flat">Sign Out</a>
+                  <a href="<?=base_url('admin/logout')?>" class="btn btn-default btn-flat">Sign Out</a>
                 </div>
               </li>
             </ul>
@@ -138,23 +138,23 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li class="">
-          <a href="<?=base_url('index.php/admin')?>">
+          <a href="<?=base_url('admin')?>">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
         <li class="header">MASTER DATA</li>
         <li class="">
-          <a href="<?=base_url('index.php/admin/calon')?>">
+          <a href="<?=base_url('admin/calon')?>">
             <i class="fa fa-user"></i> <span>Data Calon</span>
           </a>
         </li>
         <li class="">
-          <a href="<?=base_url('index.php/admin/pemilih')?>">
+          <a href="<?=base_url('admin/pemilih')?>">
             <i class="fa fa-group"></i> <span>Data Pemilih</span>
           </a>
         </li>
         <li class="active">
-          <a href="<?=base_url('index.php/admin/count')?>">
+          <a href="<?=base_url('admin/count')?>">
             <i class="fa fa-check"></i> <span>Data Penghitungan</span>
           </a>
         </li>
@@ -165,7 +165,7 @@
     <section class="content">
       <div class="box box-primary">
         <div class="box-header">
-          <a href="<?=base_url('index.php/admin/deleteAllCount')?>" class="btn btn-danger pull-right"><i class="fa fa-trash"></i> Delete All</a>
+          <a href="<?=base_url('admin/deleteAllCount')?>" class="btn btn-danger pull-right"><i class="fa fa-trash"></i> Delete All</a>
         </div>
         <div class="box-body">
           <table class="table table-striped table-bordered">
