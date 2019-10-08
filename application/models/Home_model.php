@@ -12,6 +12,16 @@ class Home_model extends CI_Model {
 			return 0;
 		}
 	}
+	function jumlahcalon()
+	{
+		$query = $this->db->get('vote');
+		if ($query->num_rows()>0) {
+			return $query->num_rows();
+		}else{
+			return 0;
+		}
+	}
+
 	function jumlahcalon2()
 	{
 		$query = $this->db->get_where('quick_count', array('id_pilih' => 'PASLON_02'));

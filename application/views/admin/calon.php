@@ -176,6 +176,7 @@
             <thead>
               <tr>
                 <th>No.</th>
+                <th>ID Pilih</th>
                 <th>Nama Ketua</th>
                 <th>Nama Wakil</th>
                 <th>Visi Misi</th>
@@ -187,6 +188,7 @@
               <?php $no = 1; foreach($datacalon as $c){ ?>
               <tr>
                 <td><?=$no++;?></td>
+                <td><?=$c->id_pilih?></td>
                 <td><?=$c->nama_calon?></td>
                 <td><?=$c->nama_wakil?></td>
                 <td><?=$c->deskripsi_calon?></td>
@@ -209,6 +211,67 @@
     </div>
     <strong>Copyright &copy; <?=date('Y')?> <a href="https://www.facebook.com/bafaqih23" target="_blank">Muhammad Bafaqih</a>.</strong>
   </footer>
+  <div id="addCalon" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button class="close" type="button" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Tambah Calon</h4>
+        </div>
+        <form action="<?=base_url('admin/addCalon')?>" method="post" enctype="multipart/form-data">
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-3">
+                <label class="control-label">Kode Pilih</label>
+              </div>
+              <div class="col-md-9">
+                <select class="form-control" name="id_pilih" required>
+                  <option value="PASLON_01">PASLON_01</option>
+                  <option value="PASLON_02">PASLON_02</option>
+                  <option value="PASLON_03">PASLON_03</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <label class="control-label">Nama Ketua</label>
+              </div>
+              <div class="col-md-9">
+                <input type="text" class="form-control" name="nama_calon" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <label class="control-label">Nama Wakil</label>
+              </div>
+              <div class="col-md-9">
+                <input type="text" class="form-control" name="nama_wakil"required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <label class="control-label">Visi Misi</label>
+              </div>
+              <div class="col-md-9">
+                <textarea class="form-control" name="deskripsi_calon" required></textarea>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <label class="control-label">Foto Calon</label>
+              </div>
+              <div class="col-md-9">
+                <input type="file" class="form-control" name="foto_calon" required>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary"><i class="fa fa-plus"></i> Tambah</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
   <?php foreach($datacalon as $c) {?>
   <div id="editCalon<?=$c->id_pilih?>" class="modal fade" role="dialog">
     <div class="modal-dialog">

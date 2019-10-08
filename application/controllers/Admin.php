@@ -11,6 +11,57 @@ class Admin extends CI_Controller {
 			redirect(base_url('login/admin'));
 		}
 	}
+	public function addCalon()
+	{
+		$id_pilih = $this->input->post('id_pilih');
+		$nama_calon = $this->input->post('nama_calon');
+		$nama_wakil = $this->input->post('nama_wakil');
+		$deskripsi_calon = $this->input->post('deskripsi_calon');
+
+		$sql = $this->db->query("SELECT id_pilih FROM vote where id_pilih='$id_pilih'");
+		$cek_paslon = $sql->num_rows();
+		if ($cek_paslon > 0) {
+			echo "<script>alert('Kode Pilih tidak bisa digunakan');window.location.href='".base_url('admin/calon')."'</script>";
+		}else{
+			$config['max_size']=2048;
+			$config['allowed_types']="png|jpg|jpeg";
+			$config['remove_spaces']=TRUE;
+			$config['overwrite']=TRUE;
+			$config['upload_path']='./assets/image_calon';
+
+			$this->load->library('upload');
+			$this->upload->initialize($config);
+
+			$this->upload->do_upload('foto_calon');
+			$data_image = $this->upload->data('file_name');
+
+			$data = array(
+				'id_pilih' => $id_pilih,
+				'nama_calon' => $nama_calon,
+				'nama_wakil' => $nama_wakil,
+				'deskripsi_calon' => $deskripsi_calon,
+				'foto_calon' => $data_image
+			);
+			$this->admin_model->input_data($data, 'vote');
+			redirect(base_url('admin/calon'));
+		}
+	}
+	public function addPemilih()
+	{
+		$nis = $this->input->post('nis');
+		$nama_lengkap = $this->input->post('nama_lengkap');
+		$kelas = $this->input->post('kelas');
+		$jurusan = $this->input->post('jurusan');
+
+		$data = array(
+			'nis' => $nis,
+			'nama_lengkap' => $nama_lengkap,
+			'kelas' => $kelas,
+			'jurusan' => $jurusan,
+		);
+		$this->admin_model->input_data($data, 'akun');
+		redirect(base_url('admin/pemilih'));
+	}
 	public function updatePemilih()
 	{
 		$nis = $this->input->post('nis');

@@ -17,6 +17,7 @@ class Home extends CI_Controller {
 		$data['infocalon2'] = $this->db->get_where('vote', array('id_pilih' => 'PASLON_02'))->row();
 		$data['infocalon3'] = $this->db->get_where('vote', array('id_pilih' => 'PASLON_03'))->row();
 		$data['totalpemilih'] = $this->home_model->jumlahpemilih();
+		$data['totalcalon'] = $this->home_model->jumlahcalon();
 		$data['totalsuara'] = $this->home_model->jumlahseluruhcalon();
 
 		$this->load->view('home',$data);
