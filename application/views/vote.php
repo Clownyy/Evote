@@ -125,12 +125,13 @@
     <div class="container-fluid">
       <div class="row custom">
         <?php foreach($calon as $c){ ?>
-        <div class="col-md-4">
+        <div class="<?=$totalcalon == 3 ? 'col-md-4' : 'col-md-6' ?>">
           <div class="box box-primary">
             <div class="box-header"><h3 class="text-center">Calon Ketua dan Wakil Ketua OSIS</h3></div>
             <div class="box-body">
               <center>
-                <img style="width: 50%; height: 50%;" src="<?=base_url('assets/image_calon/').$c->foto_calon?>">
+                <img style="width: 50%; height: 50%;" src="<?=base_url('assets/image_calon/').$c->foto_calon?>"><br>
+                <button style="margin-top: 10px" type="button" data-toggle="modal" data-target="#visMis<?=$c->id_pilih?>" class="btn btn-primary"><i class="fa fa-users"></i> Lihat Visi Misi</button>
               </center>
             </div>
             <div class="box-footer">
@@ -149,6 +150,24 @@
     <center><button style="font-size: 15pt" class="btn btn-success"><i class="fa fa-check"></i> Pilih Calon</button></center>
     </form>
   </div>
+  <?php foreach($calon as $c) {?>
+  <div id="visMis<?=$c->id_pilih?>" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button class="close" type="button" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Visi Misi Pasangan Calon</h4>
+        </div>
+        <div class="modal-body">
+          <h3 style="font-weight: bold; font-style: italic;">Visi</h3>
+          <p><?=$c->visi?></p>
+          <h3 style="font-weight: bold; font-style: italic;">Misi</h3>
+          <p><?=$c->misi?></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <?php } ?>
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
       <b>Version</b> BETA

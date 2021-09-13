@@ -196,48 +196,25 @@
           </div>
         </div>
       </div>
-      <?php if($totalcalon == 3){ ?>
       <div class="panel panel-primary">
         <div class="panel-heading"><center><h2>LIVE COUNT!</h2></center></div>
         <div class="panel-body">
           <div class="row">
-            <div class="col-md-4">
-              <div class="box box-primary">
-                <div class="box-body">
-                  <input type="hidden" name="PASLON_01" value="<?=$totalcalon1?>">
-                  <center><h1 id="totalcalon1ID"></h1></center>
-                  <center>Total Suara</center>
-                </div>
-                <div class="box-footer">
-                  <center><h2><?=$infocalon1->nama_calon?><br> &<br> <?=$infocalon1->nama_wakil?></h2></center>
-                </div>
+          <?php $no = 1; foreach ($calon as $c) { ?>
+            <div class="<?= $totalcalon == 3 ? 'col-md-4' : 'col-md-6'?>">
+            <div class="box box-primary">
+              <div class="box-body">
+                <!-- <input type="hidden" name="PASLON_01" value="<?=$totalcalon1?>"> -->
+                <center><h1 id="totalcalon<?=$no++?>ID"></h1></center>
+                <center>Total Suara</center>
               </div>
-            </div>
-            <div class="col-md-4">
-              <div class="box box-success">
-                <div class="box-body">
-                  <input type="hidden" name="PASLON_02" value="<?=$totalcalon2?>">
-                  <center><h1 id="totalcalon2ID"></h1></center>
-                  <center>Total Suara</center>
-                </div>
-                <div class="box-footer">
-                  <center><h2><?=$infocalon2->nama_calon?><br> &<br> <?=$infocalon2->nama_wakil?></h2></center>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="box box-danger">
-                <div class="box-body">
-                  <input type="hidden" name="PASLON_03" value="<?=$totalcalon3?>">
-                  <center><h1 id="totalcalon3ID"></h1></center>
-                  <center>Total Suara</center>
-                </div>
-                <div class="box-footer">
-                  <center><h2><?=$infocalon3->nama_calon?><br> &<br> <?=$infocalon3->nama_wakil?></h2></center>
-                </div>
+              <div class="box-footer">
+                <center><h2><?=$c->nama_calon?><br> &<br> <?=$c->nama_wakil?></h2></center>
               </div>
             </div>
           </div>
+          <?php } ?>
+        </div>
           <div class="col-md-12">
             <div class="box box-warning">
               <div class="box-body">
@@ -250,50 +227,6 @@
           </div>
         </div>
       </div>
-    <?php } ?>
-    <?php if($totalcalon == 2){ ?>
-      <div class="panel panel-primary">
-        <div class="panel-heading"><center><h2>LIVE COUNT!</h2></center></div>
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="box box-primary">
-                <div class="box-body">
-                  <input type="hidden" name="PASLON_01" value="<?=$totalcalon1?>">
-                  <center><h1 id="totalcalon1ID"></h1></center>
-                  <center>Total Suara</center>
-                </div>
-                <div class="box-footer">
-                  <center><h2><?=$infocalon1->nama_calon?><br> &<br> <?=$infocalon1->nama_wakil?></h2></center>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="box box-success">
-                <div class="box-body">
-                  <input type="hidden" name="PASLON_02" value="<?=$totalcalon2?>">
-                  <center><h1 id="totalcalon2ID"></h1></center>
-                  <center>Total Suara</center>
-                </div>
-                <div class="box-footer">
-                  <center><h2><?=$infocalon2->nama_calon?><br> &<br> <?=$infocalon2->nama_wakil?></h2></center>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-12">
-            <div class="box box-warning">
-              <div class="box-body">
-                <center><h1 id="totalsuaraID"></h1></center>
-              </div>
-              <div class="box-footer">
-                <center><h1>Total Suara Masuk</h1></center>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    <?php } ?>
     </section>
   </div>
   <footer class="main-footer">

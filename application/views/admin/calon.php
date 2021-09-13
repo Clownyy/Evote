@@ -165,11 +165,11 @@
     <section class="content">
       <div class="box box-primary">
         <div class="box-header">
-          <?php if($totalcalon >= 3){ ?>
-          <button type="button" class="btn pull-right" disabled data-toggle="modal" data-target="#addCalon"><i class="fa fa-plus"></i> Tambah Calon</button>
-          <?php }else{ ?>
+          <!-- <?php if($totalcalon >= 3){ ?> -->
+          <button type="button" class="btn pull-right" <?php $totalcalon >= 3 ? 'disabled' : ' ' ?> data-toggle="modal" data-target="#addCalon"><i class="fa fa-plus"></i> Tambah Calon</button>
+          <!-- <?php }else{ ?> -->
           <button type="button" class="btn pull-right" data-toggle="modal" data-target="#addCalon"><i class="fa fa-plus"></i> Tambah Calon</button>
-          <?php } ?>
+          <!-- <?php } ?> -->
         </div>
         <div class="box-body">
           <table class="table table-striped table-bordered">
@@ -191,7 +191,8 @@
                 <td><?=$c->id_pilih?></td>
                 <td><?=$c->nama_calon?></td>
                 <td><?=$c->nama_wakil?></td>
-                <td><?=$c->deskripsi_calon?></td>
+                <td><?=$c->visi?></td>
+                <td><?=$c->misi?></td>
                 <td><img class="img-circle pull-right" style="width: 50px" src="<?=base_url('assets/image_calon/').$c->foto_calon?>"></td>
                 <td style="text-align: right;">
                   <button type="button" data-toggle="modal" data-target="#editCalon<?=$c->id_pilih?>" class="btn btn-warning btn-circle"><i class="fa fa-pencil"></i></button>
@@ -250,10 +251,17 @@
             </div>
             <div class="row">
               <div class="col-md-3">
-                <label class="control-label">Visi Misi</label>
+                <label class="control-label">Visi</label>
               </div>
               <div class="col-md-9">
-                <textarea class="form-control" name="deskripsi_calon" required></textarea>
+                <textarea class="form-control" name="visi" required></textarea>
+              </div>
+            </div><div class="row">
+              <div class="col-md-3">
+                <label class="control-label">Misi</label>
+              </div>
+              <div class="col-md-9">
+                <textarea class="form-control" name="misi" required></textarea>
               </div>
             </div>
             <div class="row">
@@ -308,10 +316,17 @@
             </div>
             <div class="row">
               <div class="col-md-3">
-                <label class="control-label">Visi Misi</label>
+                <label class="control-label">Visi</label>
               </div>
               <div class="col-md-9">
-                <textarea class="form-control" name="deskripsi_calon"><?=$c->deskripsi_calon?></textarea>
+                <textarea class="form-control" name="visi"><?=$c->visi?></textarea>
+              </div>
+            </div><div class="row">
+              <div class="col-md-3">
+                <label class="control-label">Misi</label>
+              </div>
+              <div class="col-md-9">
+                <textarea class="form-control" name="misi"><?=$c->misi?></textarea>
               </div>
             </div>
           </div>

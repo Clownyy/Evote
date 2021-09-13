@@ -6,7 +6,7 @@ class Admin extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('admin_model');
+		$this->load->model(['admin_model', 'vote_model']);
 		if (!$this->session->userdata('admin_login')) {
 			redirect(base_url('login/admin'));
 		}
@@ -16,7 +16,8 @@ class Admin extends CI_Controller {
 		$id_pilih = $this->input->post('id_pilih');
 		$nama_calon = $this->input->post('nama_calon');
 		$nama_wakil = $this->input->post('nama_wakil');
-		$deskripsi_calon = $this->input->post('deskripsi_calon');
+		$visi = $this->input->post('visi');
+		$misi = $this->input->post('misi');
 
 		$sql = $this->db->query("SELECT id_pilih FROM vote where id_pilih='$id_pilih'");
 		$cek_paslon = $sql->num_rows();
@@ -39,7 +40,8 @@ class Admin extends CI_Controller {
 				'id_pilih' => $id_pilih,
 				'nama_calon' => $nama_calon,
 				'nama_wakil' => $nama_wakil,
-				'deskripsi_calon' => $deskripsi_calon,
+				'visi' => $visi,
+				'misi' => $misi,
 				'foto_calon' => $data_image
 			);
 			$this->admin_model->input_data($data, 'vote');
@@ -107,12 +109,14 @@ class Admin extends CI_Controller {
 		$id_pilih = $this->input->post('id_pilih');
 		$nama_calon = $this->input->post('ketua');
 		$nama_wakil = $this->input->post('wakil');
-		$deskripsi_calon = $this->input->post('deskripsi_calon');
+		$visi = $this->input->post('visi');
+		$misi = $this->input->post('misi');
 
 		$data = array(
 			'nama_calon' => $nama_calon,
 			'nama_wakil' => $nama_wakil,
-			'deskripsi_calon' => $deskripsi_calon,
+			'visi' => $visi,
+			'misi' => $misi,
 		);
 		$where = array(
 			'id_pilih' => $id_pilih,
@@ -134,9 +138,10 @@ class Admin extends CI_Controller {
 		$data['totalcalon1'] = $this->admin_model->jumlahcalon1();
 		$data['totalcalon2'] = $this->admin_model->jumlahcalon2();
 		$data['totalcalon3'] = $this->admin_model->jumlahcalon3();
-		$data['infocalon1'] = $this->db->get_where('vote', array('id_pilih' => 'PASLON_01'))->row();
-		$data['infocalon2'] = $this->db->get_where('vote', array('id_pilih' => 'PASLON_02'))->row();
-		$data['infocalon3'] = $this->db->get_where('vote', array('id_pilih' => 'PASLON_03'))->row();
+		// $data['infocalon1'] = $this->db->get_where('vote', array('id_pilih' => 'PASLON_01'))->row();
+		// $data['infocalon2'] = $this->db->get_where('vote', array('id_pilih' => 'PASLON_02'))->row();
+		// $data['infocalon3'] = $this->db->get_where('vote', array('id_pilih' => 'PASLON_03'))->row();
+		$data['calon'] = $this->vote_model->get_calon()->result();
 		$data['totalsuaramasuk'] = $this->admin_model->jumlahsuaramasuk();
 		$this->load->view('admin/dashboard',$data);
 	}

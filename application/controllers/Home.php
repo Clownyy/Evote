@@ -6,16 +6,17 @@ class Home extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('home_model');
+		$this->load->model(['home_model', 'vote_model']);
 	}
 	public function index()
 	{
 		$data['totalcalon1'] = $this->home_model->jumlahcalon1();
 		$data['totalcalon2'] = $this->home_model->jumlahcalon2();
 		$data['totalcalon3'] = $this->home_model->jumlahcalon3();
-		$data['infocalon1'] = $this->db->get_where('vote', array('id_pilih' => 'PASLON_01'))->row();
-		$data['infocalon2'] = $this->db->get_where('vote', array('id_pilih' => 'PASLON_02'))->row();
-		$data['infocalon3'] = $this->db->get_where('vote', array('id_pilih' => 'PASLON_03'))->row();
+		// $data['infocalon1'] = $this->db->get_where('vote', array('id_pilih' => 'PASLON_01'))->row();
+		// $data['infocalon2'] = $this->db->get_where('vote', array('id_pilih' => 'PASLON_02'))->row();
+		// $data['infocalon3'] = $this->db->get_where('vote', array('id_pilih' => 'PASLON_03'))->row();
+		$data['calon'] = $this->vote_model->get_calon()->result();
 		$data['totalpemilih'] = $this->home_model->jumlahpemilih();
 		$data['totalcalon'] = $this->home_model->jumlahcalon();
 		$data['totalsuara'] = $this->home_model->jumlahseluruhcalon();

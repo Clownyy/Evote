@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 26 Sep 2019 pada 09.19
--- Versi server: 10.4.6-MariaDB
--- Versi PHP: 7.3.9
+-- Waktu pembuatan: 13 Sep 2021 pada 20.02
+-- Versi server: 10.4.14-MariaDB
+-- Versi PHP: 7.4.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -61,7 +60,7 @@ CREATE TABLE `akun` (
 --
 
 INSERT INTO `akun` (`nis`, `nama_lengkap`, `kelas`, `jurusan`, `status_vote`) VALUES
-(2, 'Yiek alfian', '12', 'RPL', '1'),
+(2, 'Yiek alfian', '12', 'RPL', '0'),
 (3, 'Fahrizal Syaripdin', '12', 'RPL', '0'),
 (4, 'Muhammad Aqsyal', '12', 'RPL', '0'),
 (5, 'Aldin abb', '12', 'RPL', '0'),
@@ -82,13 +81,6 @@ CREATE TABLE `quick_count` (
   `calon_pilihan` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data untuk tabel `quick_count`
---
-
-INSERT INTO `quick_count` (`id`, `id_pilih`, `calon_pilihan`) VALUES
-(32, 'PASLON_01', '');
-
 -- --------------------------------------------------------
 
 --
@@ -99,7 +91,8 @@ CREATE TABLE `vote` (
   `id_pilih` varchar(33) NOT NULL,
   `nama_calon` varchar(50) NOT NULL,
   `nama_wakil` varchar(255) NOT NULL,
-  `deskripsi_calon` text NOT NULL,
+  `visi` text NOT NULL,
+  `misi` text NOT NULL,
   `foto_calon` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -107,10 +100,9 @@ CREATE TABLE `vote` (
 -- Dumping data untuk tabel `vote`
 --
 
-INSERT INTO `vote` (`id_pilih`, `nama_calon`, `nama_wakil`, `deskripsi_calon`, `foto_calon`) VALUES
-('PASLON_01', 'Ficka', 'Rahmanda', 'Saya tidak tau harus berkata apa', '11.jpg'),
-('PASLON_02', 'Aditya', 'Ivon', 'Saya sangat bahagia bisa masuk osis', '22.jpg'),
-('PASLON_03', 'Joesnadya', 'Josephine', 'SMKN 10 Jakarta', '3.jpg');
+INSERT INTO `vote` (`id_pilih`, `nama_calon`, `nama_wakil`, `visi`, `misi`, `foto_calon`) VALUES
+('PASLON_01', 'Ficka', 'Rahmanda', 'Foya', 'Foya', '11.jpg'),
+('PASLON_03', 'Joesnadya', 'Josephine', 'SMKN 10 Jakarta', 'Jaya', '3.jpg');
 
 --
 -- Indexes for dumped tables
@@ -154,7 +146,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT untuk tabel `quick_count`
 --
 ALTER TABLE `quick_count`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

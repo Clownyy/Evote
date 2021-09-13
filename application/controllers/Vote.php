@@ -7,7 +7,7 @@ class Vote extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('vote_model');
+		$this->load->model(['vote_model', 'home_model']);
 		if (!$this->session->userdata('status_login')) {
 			redirect(base_url('login'));
 		}
@@ -19,6 +19,7 @@ class Vote extends CI_Controller {
 		$data['totalcalon2'] = $this->vote_model->jumlahcalon2();
 		$data['totalcalon3'] = $this->vote_model->jumlahcalon3();
 		$data['calon'] = $this->vote_model->get_calon()->result();
+		$data['totalcalon'] = $this->home_model->jumlahcalon();
 
 		$this->load->view('vote', $data);
 	}
