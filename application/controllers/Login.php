@@ -23,22 +23,29 @@ class Login extends CI_Controller {
 	}
 	public function authAdmin()
 	{
-		$username = $this->input->post('username');
-		$password = $this->input->post('password');
-		$where = array(
-			'username' => $username,
-			'password' => md5($password),
-		);
-		$cek = $this->login_model->cek_admin("admin", $where)->num_rows();
-		if ($cek > 0) {
-			$create_session = array(
-				'username' => $username,
-				'admin_login' => TRUE,
-			);
-			$this->session->set_userdata($create_session);
-			redirect(base_url('admin'));
-		}else{
-			echo "<script>alert('Anda bukan admin!');window.location.href='".base_url('login/admin')."'</script>";
+		$post = $this->input->post(null, TRUE);
+		if(isset($post['login'])){
+			$this->load->model('login_model');
+			$query = $this->login_model->login($post);
+			if($query->num_rows() > 0)
+			{
+				$row = $query->row();
+				$params = array(
+					'nama_lengkap' => $row->nama_lengkap,
+					'admin_login' => TRUE,
+					'username' => $row->username,
+				);
+				$this->session->set_userdata($params);
+				echo "<script>
+				alert('Selamat Anda Berhasil Login');
+				window.location='".site_url('admin')."';
+				</script>";
+			}else{
+				echo "<script>
+				alert('Gagal, Username / Password Salah!');
+				window.location='".site_url('login/admin')."';
+				</script>";
+			}
 		}
 	}
 	public function auth()
@@ -49,13 +56,14 @@ class Login extends CI_Controller {
 				'nis' => $this->input->post('nis')
 			);
 			if ($this->login_model->cek_login($data)->num_rows() == 1) {
-				$cek = $this->login_model->cek_login($data)->result();
+				$cek = $this->login_model->cek_login($data)->row();
 				foreach ($cek as $k) {
 					$value = $k->status_vote;
 				};
 				if ($value == 0) {
 					$create_session = array(
 						'nis' => $this->input->post('nis'),
+						'nama_lengkap' => $cek->nama_lengkap,
 						'status_login' => TRUE
 					);
 					$this->session->set_userdata($create_session);
