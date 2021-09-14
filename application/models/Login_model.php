@@ -7,8 +7,13 @@ class Login_model extends CI_Model {
 		$this->db->where($data);
 		return $this->db->get('akun');
 	}
-	public function cek_admin($table,$where){
-		return $this->db->get_where($table,$where);
+	public function login($post){
+		$this->db->select('*');
+        $this->db->from('admin');
+        $this->db->where('username', $post['username']);
+        $this->db->where('password', md5($post['password']));
+        $query = $this->db->get();
+        return $query;
 	}
 
 }

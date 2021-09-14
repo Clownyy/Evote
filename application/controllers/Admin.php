@@ -95,14 +95,12 @@ class Admin extends CI_Controller {
 	public function pemilih()
 	{
 		$data['pemilih'] = $this->admin_model->get_pemilih()->result();
-		$data['session_admin'] = $this->admin_model->get_session()->result();
-		$this->load->view('admin/pemilih', $data);
+		$this->template->load('template', 'admin/pemilih', $data);
 	}
 	public function count()
 	{
 		$data['count'] = $this->admin_model->get_count()->result();
-		$data['session_admin'] = $this->admin_model->get_session()->result();
-		$this->load->view('admin/count',$data);
+		$this->template->load('template', 'admin/count', $data);
 	}
 	public function updateCalon()
 	{
@@ -132,7 +130,6 @@ class Admin extends CI_Controller {
 	}
 	public function index()
 	{
-		$data['session_admin'] = $this->admin_model->get_session()->result();
 		$data['totalcalon'] = $this->admin_model->jumlahcalon();
 		$data['totalpemilih'] = $this->admin_model->jumlahpemilih();
 		$data['totalcalon1'] = $this->admin_model->jumlahcalon1();
@@ -143,7 +140,8 @@ class Admin extends CI_Controller {
 		// $data['infocalon3'] = $this->db->get_where('vote', array('id_pilih' => 'PASLON_03'))->row();
 		$data['calon'] = $this->vote_model->get_calon()->result();
 		$data['totalsuaramasuk'] = $this->admin_model->jumlahsuaramasuk();
-		$this->load->view('admin/dashboard',$data);
+		$this->template->load('template', 'admin/dashboard', $data);
+		// $this->load->view('admin/dashboard',$data);
 	}
 	public function logout()
 	{
@@ -152,10 +150,9 @@ class Admin extends CI_Controller {
 	}
 	public function calon()
 	{
-		$data['session_admin'] = $this->admin_model->get_session()->result();
 		$data['totalcalon'] = $this->admin_model->jumlahcalon();
 		$data['datacalon'] = $this->admin_model->get_calon()->result();
-		$this->load->view('admin/calon',$data);
+		$this->template->load('template', 'admin/calon', $data);
 	}
 
 }

@@ -21,7 +21,7 @@ class Vote extends CI_Controller {
 		$data['calon'] = $this->vote_model->get_calon()->result();
 		$data['totalcalon'] = $this->home_model->jumlahcalon();
 
-		$this->load->view('vote', $data);
+		$this->template->load('template', 'vote', $data);
 	}
 	public function logout()
 	{
