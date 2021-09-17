@@ -140,8 +140,7 @@ class Admin extends CI_Controller {
 		// $data['infocalon3'] = $this->db->get_where('vote', array('id_pilih' => 'PASLON_03'))->row();
 		$data['calon'] = $this->vote_model->get_calon()->result();
 		$data['totalsuaramasuk'] = $this->admin_model->jumlahsuaramasuk();
-		$this->template->load('admin_template', 'admin/dashboard', $data);
-		// $this->load->view('admin/dashboard',$data);
+		$this->template->load('template', 'admin/dashboard', $data);
 	}
 	public function logout()
 	{

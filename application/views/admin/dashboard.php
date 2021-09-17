@@ -1,84 +1,98 @@
-<section class="content-header"></section>
-<section class="content">
-  <div class="row">
-    <div class="col-md-3">
-      <div class="small-box bg-aqua">
-        <div class="inner">
-          <h3><?=$totalcalon?></h3>
-          <p>Jumlah Calon</p>
-        </div>
-        <div class="icon">
-          <i class="fa fa-user"></i>
-        </div>
-        <a href="" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="small-box bg-yellow">
-        <div class="inner">
-          <h3><?=$totalpemilih?></h3>
-          <p>Jumlah Pemilih</p>
-        </div>
-        <div class="icon">
-          <i class="fa fa-users"></i>
-        </div>
-        <a href="" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="small-box bg-green">
-        <div class="inner">
-          <h3><?=$totalsuaramasuk?></h3>
-          <p>Jumlah Suara Masuk</p>
-        </div>
-        <div class="icon">
-          <i class="fa fa-check"></i>
-        </div>
-        <a href="" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="small-box bg-red">
-        <div class="inner">
-          <h3><?=$totalpemilih-$totalsuaramasuk?></h3>
-          <p>Yang Belum Memilih</p>
-        </div>
-        <div class="icon">
-          <i class="fa fa-warning"></i>
-        </div>
-        <a href="" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
-      </div>
-    </div>
-  </div>
-  <div class="panel panel-primary">
-    <div class="panel-heading"><center><h2>LIVE COUNT!</h2></center></div>
-    <div class="panel-body">
-      <div class="row">
-      <?php $no = 1; foreach ($calon as $c) { ?>
-        <div class="<?= $totalcalon == 3 ? 'col-md-4' : 'col-md-6'?>">
-        <div class="box box-primary">
-          <div class="box-body">
-            <!-- <input type="hidden" name="PASLON_01" value="<?=$totalcalon1?>"> -->
-            <center><h1 id="totalcalon<?=$no++?>ID"></h1></center>
-            <center>Total Suara</center>
+    <div class="header bg-primary pb-6">
+      <div class="container-fluid">
+        <div class="header-body">
+          <div class="row align-items-center py-4">
           </div>
-          <div class="box-footer">
-            <center><h2><?=$c->nama_calon?><br> &<br> <?=$c->nama_wakil?></h2></center>
+          <!-- Card stats -->
+          <div class="row">
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Total Kandidat</h5>
+                      <span class="h2 font-weight-bold mb-0"><?=$totalcalon?></span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
+                        <i class="ni ni-active-40"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-sm">
+                    <span class="text-nowrap">Since last month</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Jumlah Pemilih</h5>
+                      <span class="h2 font-weight-bold mb-0"><?=$totalpemilih?></span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
+                        <i class="fa fa-users"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-sm">
+                    <!-- <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span> -->
+                    <span class="text-nowrap">Since last month</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Jumlah Suara Masuk</h5>
+                      <span class="h2 font-weight-bold mb-0"><?=$totalsuaramasuk?></span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
+                        <i class="ni ni-check-bold"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-sm">
+                    <!-- <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span> -->
+                    <span class="text-nowrap">Since last month</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Yang Belum Memilih</h5>
+                      <span class="h2 font-weight-bold mb-0"><?=$totalpemilih - $totalsuaramasuk?></span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
+                        <i class="fa fa-user"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-sm">
+                    <!-- <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span> -->
+                    <span class="text-nowrap">Since last month</span>
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <?php } ?>
     </div>
-      <div class="col-md-12">
-        <div class="box box-warning">
-          <div class="box-body">
-            <center><h1 id="totalsuaraID"></h1></center>
-          </div>
-          <div class="box-footer">
-            <center><h1>Total Suara Masuk</h1></center>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
